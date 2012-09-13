@@ -1,0 +1,179 @@
+<!--Carmen Johnson
+MiU Project 3
+9/13/2012 -->
+
+
+<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<title>Launch Page</title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html" />
+		<meta name="keywords" content="camping list, camping checklist, checklist app" />
+		<meta name="description" content="This app enables you to make sure that you're taking every single item required for emergency evacuations check-list" />
+		<meta name="robots" content="INDEX, FOLLOW" />
+		<meta name="viewport" content="user-scalable=no, width=device-width" />
+		<title>Launch Page</title>
+		
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div data-role="page" id="homePage" data-title="Launch Page" data-theme="b">
+			<div data-role="header" data-theme="b" class="navbar">
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="https://github.com/blackpalmmobileapplications/Carmen_Johnson_MIU2" data-role="button" rel="external">Github</a>
+					<a href="#homePage" data-role="button">Home</a>
+					<a href="../a" rel="external" data-role="button">App A</a>
+				</div>
+			</div>
+			
+			<div data-role="content" class="content">
+				<div class="ui-bar ui-bar-b">
+					<h1>Emergency Evacuation List</h1>
+				</div>
+				<p>This app is for making sure that you have items for emergency evacuations.</p>
+				
+				<img src="images/featured.png" /><br />
+				
+				<a href="#addItemPage" data-role="button" onclick="clearAddFields();" >Add Item</a>
+				<br />
+				<ul data-role="listview" data-filter="true" data-filter-placeholder="Search..." id="itemList"></ul>
+				
+				<div data-role="controlgroup" data-type="horizontal" id="pagination">
+					<a href="javascript:void(0)" id="prevPage" data-role="button" class="ui-disabled">Previous</a>
+					<a href="javascript:void(0)" id="nextPage" data-role="button">Next</a>
+				</div>
+			</div>
+		</div>
+		
+		<div data-role="page" id="addItemPage" data-title="Add Item" data-theme="b">
+			<div data-role="header" data-theme="b" class="navbar">
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="https://github.com/blackpalmmobileapplications/Carmen_Johnson_MIU2" data-role="button" rel="external">Github</a>
+					<a href="#homePage" data-role="button">Home</a>
+					<a href="../a" rel="external" data-role="button">App A</a>
+				</div>
+			</div>
+			
+			<div data-role="content" class="content">
+				<div class="ui-bar ui-bar-b">
+					<h1>Emergency Evacuation List</h1><br />
+					<h4>Add Item</h4>
+				</div>
+				<div class="errMessage ui-bar-e">
+					
+				</div>
+				<form action="#addItem" method="post" id="addItemForm">
+					<div data-role="fieldcontain">
+						<label for="category" class="select">Category:</label>
+						<select name="category" id="category">
+							<option value="bedding">Bedding</option>
+							<option value="clothing">Clothing</option>
+							<option value="cooking">Cooking</option>
+							<option value="firstaid">First Aid</option>
+							<option value="shelter">Shelter</option>
+						</select>
+					
+						<label for="itemName">Name:</label>
+						<input type="text" name="itemName" id="itemName" />
+						
+						<label for="quantity">Quantity:</label>
+						<input type="range" name="quantity" id="quantity" value="1" min="1" max="50" />
+						<br />
+						
+						<label for="itemDate">Date(yyyy-mm-ddy):</label>
+						<input type="text" name="itemDate" id="itemDate" />
+						
+						<input type="checkbox" name="important" id="important" class="custom" />
+						<label for="important">Important</label>
+						
+						<label for="comments">Comments:</label>
+						<textarea name="comments" id="comments"></textarea>
+						
+						<div data-role="controlgroup" data-type="horizontal">
+							<a data-role="button" id="save" onclick="$('#addItemForm').submit()" >Save</a>
+							<a data-role="button" data-rel="back"onclick="clearAddFields()"  >Cancel</a>
+						</div>
+					</div>
+				</form>
+				
+				<a data-rel="back" data-role="button">Back</a>
+			</div>
+		</div>
+		
+		
+		<!--***********************-->
+	
+
+		<div data-role="page" id="editItemPage" data-title="Edit Item" data-theme="b">
+			<div data-role="header" data-theme="b" class="navbar">
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="https://github.com/blackpalmmobileapplications/Carmen_Johnson_MIU2" data-role="button" rel="external">Github</a>
+					<a href="#homePage" data-role="button">Home</a>
+					<a href="../a" rel="external" data-role="button">App A</a>
+				</div>
+			</div>
+			
+			<div data-role="content" class="content">
+				<div class="ui-bar ui-bar-b">
+					<h1>Emergency Evacuation List</h1><br />
+					<h4>Edit Item</h4>
+				</div>
+				<div class="errMessage ui-bar-e">
+					
+				</div>
+				<form action="#editItemForm" id="editItemForm" method="post">
+					
+					<div data-role="fieldcontain">
+						<input type="hidden" name="itemId" />
+						<label for="category" class="select">Category:</label>
+						<select name="category" id="category">
+							<option value="bedding">Bedding</option>
+							<option value="clothing">Clothing</option>
+							<option value="cooking">Cooking</option>
+							<option value="firstaid">First Aid</option>
+							<option value="shelter">Shelter</option>
+						</select>
+					
+						<label for="itemName">Name:</label>
+						<input type="text" name="itemName" id="itemName" />
+						
+						<label for="quantity">Quantity:</label>
+						<input type="range" name="quantity" id="quantity" value="1" min="1" max="50" />
+						<br />
+						
+						<label for="itemDate">Date(yyyy-mm-ddy):</label>
+						<input type="text" name="itemDate" id="itemDate" />
+						
+						
+						<input type="checkbox" name="important" id="important" class="custom" />
+						<label for="important">Important</label>
+						
+						<label for="comments">Comments:</label>
+						<textarea name="comments" id="comments"></textarea>
+						
+						<div data-role="controlgroup" data-type="horizontal">
+							<a data-role="button" id="update" onclick="$('#editItemForm').submit()" >Update </a>
+							<a data-role="button" data-rel="back" >Cancel</a>
+						</div>
+					</div>
+				</form>
+				
+				<a data-rel="back" data-role="button">Back</a>
+			</div>
+		</div>
+		
+<!--**************************-->
+		
+		
+		
+		
+		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0-alpha.1/jquery.mobile-1.2.0-alpha.1.min.js"></script>
+		<script src="js/jquery_validation/jquery.validate.min.js" ></script>
+		<script src="js/jquery_validation/additional-methods.min.js" ></script>
+		<script src="js/json.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>
